@@ -1,10 +1,13 @@
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class Player implements Comparable<Player> {
-	
+
+public class Player implements Comparator<Player> {
+
 	private String name;
 	private LocalDate dateOfBirth;
 	private String skill;
@@ -14,18 +17,16 @@ public class Player implements Comparable<Player> {
 	private String nationality;
 	private double powerRating;
 	
+	
+	
+	
+	
 	public Player() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	public Player(String name, Date dateOfBirth, String skill, int numberOfMatches, int runs, int wickets,
+	public Player(String name, LocalDate dateOfBirth, String skill, int numberOfMatches, int runs, int wickets,
 			String nationality, double powerRating) {
 		super();
 		this.name = name;
@@ -37,9 +38,6 @@ public class Player implements Comparable<Player> {
 		this.nationality = nationality;
 		this.powerRating = powerRating;
 	}
-	
-	
-	
 	public String getName() {
 		return name;
 	}
@@ -89,59 +87,64 @@ public class Player implements Comparable<Player> {
 		this.powerRating = powerRating;
 	}
 	
+	public static Map<String,Integer> calculateNationalityCount(List<Player> list){
 	
-	public static Player createPlayer(String detail){
-		
-	
-		String ar[] = detail.split("\\,");
-		
-		Player p1 = new Player();
-		String s = ar[1];
-		
-		LocalDate d1= LocalDate.parse(s);
-		
-		p1.setName(ar[0]);
-		p1.setDateOfBirth(d1);
-		p1.setSkill(ar[2]);
-		p1.setNumberOfMatches(ar[3]);
-		
-		
-		
-		ArrayList <Player> a1 = new ArrayList<Player>();
-		
-		//for(int i=0;i<ar.length;i++){
-			a1.add(new Player(ar[i],));
-		//}
-		
-		
-		return new Player()
+		int count=0;
+		for(Player e: list)
+		{
+			String []arrr = new String[110];
 			
+			for(int i=0;i<arrr.length;i++){
+				
+			
+			arrr[i]= e.getNationality();
+			for(int j=0;i<arrr.length;i++){
+				if(arrr[i]==arrr[i+1]){
+					count+=1;
+					
+				}
+				
+			}
+			
+			}
 			
 		}
 		
+		TreeMap tm = new TreeMap<>();
+		
+		//if(list.get(6)==)
+		
+			tm.put(list.get(6),count);
 		
 		
-		return null;
+		System.out.println(tm.toString());
+		
+		return tm;
 		
 	}
-
-
-
-
-
-
 
 
 	@Override
-	public int compareTo(Player o) {
-		// TODO Auto-generated method stub
+	public int compare(Player arg0, Player arg1) {
 		
-		return numberOfMatches.compareTo(o.getNumberOfMatches());
+		
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", dateOfBirth=" + dateOfBirth + ", skill=" + skill + ", numberOfMatches="
+				+ numberOfMatches + ", runs=" + runs + ", wickets=" + wickets + ", nationality=" + nationality
+				+ ", powerRating=" + powerRating + "]";
 	}
 	
 	
 	
 	
 	
-
+	
+	
+	
 }
